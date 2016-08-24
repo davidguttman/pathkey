@@ -1,0 +1,24 @@
+{
+  "name": "pathkey",
+  "version": "1.0.0",
+  "description": "Generate keys from objects and parse keys back into objects. Useful for working with kv stores like leveldb and redis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [],
+  "author": "David Guttman <david@guttman.io> (http://davidguttman.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "^4.6.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidguttman/pathkey.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidguttman/pathkey/issues"
+  },
+  "homepage": "https://github.com/davidguttman/pathkey#readme"
+}
