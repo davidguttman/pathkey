@@ -15,6 +15,16 @@ tape('should handle default options', function (t) {
   var expectedKey = 'companyId-email-nameÿstock-marketÿvincent@adultman.comÿVincent Adultman'
   t.equal(key, expectedKey, 'key should match')
 
+  var range = pk.range({
+    level: 'companyId-email-name',
+    companyId: 'stock-market'
+  })
+  var expectedRange = {
+    gte: 'companyId-email-nameÿstock-marketÿ',
+    lte: 'companyId-email-nameÿstock-marketÿÿÿ',
+  }
+  t.deepEqual(range, expectedRange, 'range should match')
+
   var parsed = pk.parse(key)
   t.deepEqual(parsed, obj, 'parsed should match')
   t.end()

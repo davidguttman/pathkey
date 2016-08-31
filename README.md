@@ -78,6 +78,21 @@ var parsed = pk.parse(key)
 //   name: 'Vincent Adultman' }
 ```
 
+### pk.range(obj)
+
+```js
+var range = pk.range({
+  _path: 'companyId/email/name',
+  companyId: 'stock-market'
+})
+console.log(range)
+// {
+//   gte: 'companyId/email/nameÿstock-marketÿ',
+//   lte: 'companyId/email/nameÿstock-marketÿÿÿ',
+// }
+
+```
+
 ## License
 
 MIT

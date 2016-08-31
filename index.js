@@ -6,7 +6,8 @@ module.exports = function (opts) {
 
   return {
     create: create(opts),
-    parse: parse(opts)
+    parse: parse(opts),
+    range: range(opts)
   }
 }
 
@@ -39,5 +40,32 @@ function parse (opts) {
 
     subkeys.forEach(function (k, i) { obj[k] = keyParts[i+1] })
     return obj
+  }
+}
+
+function range (opts) {
+  return function (obj) {
+    var pathKey = opts.pathKey
+    var pathSep = opts.pathSep
+    var keySep = opts.keySep
+
+    var path = obj[pathKey]
+    var subkeys = path.split(pathSep)
+    var gteKeyParts = [path]
+    var lteKeyParts = [path]
+
+    for (var i = 0; i < subkeys.length; i++) {
+      if (obj[subkeys[i]] !== undefined) {
+        gteKeyParts.push(obj[subkeys[i]])
+      } else {
+        break
+      }
+    }
+    subkeys.forEach(function (k) { lteKeyParts.push(obj[k]) })
+
+    return {
+      gte: gteKeyParts.join(keySep) + keySep,
+      lte: lteKeyParts.join(keySep) + keySep
+    }
   }
 }

@@ -17,6 +17,16 @@ var key = pk.create(obj)
 console.log(key)
 // 'companyId/email/nameÿstock-marketÿvincent@adultman.comÿVincent Adultman'
 
+var range = pk.range({
+  _path: 'companyId/email/name',
+  companyId: 'stock-market'
+})
+console.log(range)
+// {
+//   gte: 'companyId/email/nameÿstock-marketÿ',
+//   lte: 'companyId/email/nameÿstock-marketÿÿÿ',
+// }
+
 
 var parsed = pk.parse(key)
 console.log('parsed', parsed)
