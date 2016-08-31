@@ -1,6 +1,6 @@
 {
   "name": "pathkey",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Generate keys from objects and parse keys back into objects. Useful for working with kv stores like leveldb and redis.",
   "main": "index.js",
   "scripts": {
