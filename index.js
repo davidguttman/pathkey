@@ -72,7 +72,7 @@ function range (opts) {
 
 // Doubles all occurances of keySep in key so that we can know they are user input.
 function _encodeKeySeparator(key, keySep){
-  return key.split(keySep + '').join(keySep + keySep + '');
+  return key.split(keySep).join(keySep + keySep);
 }
 
 // Splits key by keySep ignoring encoded separators
