@@ -20,7 +20,7 @@ function create (opts) {
     var path = obj[pathKey]
     var subkeys = path.split(pathSep)
     var keyParts = [path]
-    subkeys.forEach(function (k) { keyParts.push(obj[k]) })
+    subkeys.forEach(function (k) { keyParts.push(_encodeKeySeparator(obj[k], keySep)) })
     return keyParts.join(keySep)
   }
 }
@@ -31,7 +31,7 @@ function parse (opts) {
     var pathSep = opts.pathSep
     var keySep = opts.keySep
 
-    var keyParts = key.split(keySep)
+    var keyParts = _decodeKeySeparatorAndSplitKey(key, keySep)
     var path = keyParts[0]
 
     var subkeys = path.split(pathSep)
@@ -68,4 +68,30 @@ function range (opts) {
       lte: lteKeyParts.join(keySep) + keySep
     }
   }
+}
+
+// Doubles all occurances of keySep in key so that we can know they are user input.
+function _encodeKeySeparator(key, keySep){
+  return key.split(keySep).join(keySep + keySep);
+}
+
+// Splits key by keySep ignoring encoded separators
+function _decodeKeySeparatorAndSplitKey(key, keySep){
+  var result = []
+  var currentKeyPart = ""
+  for(var i=0; i<key.length; i++){
+    if(key[i] != keySep){
+      currentKeyPart += key[i]
+      continue
+    }
+    if(key[i+1] == keySep){
+      currentKeyPart += keySep
+      i++
+      continue
+    }
+    result.push(currentKeyPart)
+    currentKeyPart = ""
+  }
+  result.push(currentKeyPart)
+  return result
 }
