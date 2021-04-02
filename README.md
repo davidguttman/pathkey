@@ -57,7 +57,7 @@ var pk = PathKey({
 
 ```js
 var key = pk.create({
-  _path: 'companyId/email', // pathKey: '_path', pathSep: '/'
+  _path: 'companyId/email/name', // pathKey: '_path', pathSep: '/'
   companyId: 'stock-market',
   email: 'vincent@adultman.com',
   name: 'Vincent Adultman'
